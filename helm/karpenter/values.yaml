@@ -1,0 +1,75 @@
+# https://github.com/aws/karpenter-provider-aws/blob/release-v0.32.10/charts/karpenter/values.yaml
+
+# Cluster Name
+clusterName:
+
+karpenter:
+  # nodeSelector:
+  #   # -- Karpenter node group
+  #   eks.amazonaws.com/nodegroup:
+  # tolerations:
+  # - key: CriticalAddonsOnly
+  #   operator: Exists
+  # - key: static
+  #   operator: Equal
+  #   value: 'true'
+  #   effect: NoSchedule
+  settings:
+    InterruptionQueue:
+    clusterName:
+  serviceAccount:
+    annotations:
+      # -- KarpenterControllerRole
+      eks.amazonaws.com/role-arn:
+  controller:
+    resources:
+      requests:
+        cpu: 1
+        memory: 1Gi
+      limits:
+        cpu: 1
+        memory: 1Gi
+
+
+EC2NodeClass:
+  name: main
+  rootSize: 30Gi
+  role:
+
+nodePools:
+  main:
+    enabled: true
+    disruption:
+      consolidationPolicy: WhenUnderutilized
+      expireAfter: Never
+    limits:
+      cpu: 50
+      memory: 100Gi
+    taintNodes: false
+    enableSpot: true
+    selectiveInstanceTypes: []
+
+  jobs:
+    enabled: true
+    disruption:
+      consolidateAfter: 1m0s
+      consolidationPolicy: WhenEmpty
+      expireAfter: Never
+    resources:
+      cpu: 100
+      memory: 200Gi
+    taintNodes: true
+    enableSpot: true
+    selectiveInstanceTypes: []
+
+  services:
+    enabled: true
+    disruption:
+      consolidationPolicy: WhenUnderutilized
+      expireAfter: Never
+    resources:
+      cpu: 200
+      memory: 300Gi
+    taintNodes: true
+    enableSpot: true
+    selectiveInstanceTypes: ["m4.large"]

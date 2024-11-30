@@ -1,0 +1,17 @@
+apiVersion: v2
+name: karpenter
+description: Helm to setup Karpenter
+
+version: 0.1.0
+
+dependencies:
+- name: karpenter
+  version: "v0.32.10"
+  repository: "oci://public.ecr.aws/karpenter"
+
+# - name: karpenter
+#   version: "0.37.5"
+#   repository: "oci://public.ecr.aws/karpenter"
+# - name: "karpenter-crd"
+#   version: "0.37.5"
+#   repository: "oci://public.ecr.aws/karpenter"

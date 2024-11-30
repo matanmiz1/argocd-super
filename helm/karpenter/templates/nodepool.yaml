@@ -1,0 +1,69 @@
+{{- if .Values.EC2NodeClass.enabled }}
+{{- range $key, $value := .Values.nodePools }}
+{{- if $value.enabled }}
+---
+apiVersion: karpenter.sh/v1beta1
+kind: NodePool
+metadata:
+  name: {{ $key | quote }}
+spec:
+  disruption: {{ $value.disruption | toYaml | nindent 4 }}
+  limits:
+    cpu: {{ $value.limits.cpu }}
+    memory: {{ $value.limits.memory | quote }}
+  template:
+    metadata:
+      labels:
+        nodePool: {{ $key | quote }}
+    spec:
+      nodeClassRef:
+        name: main
+      requirements:
+      - key: kubernetes.io/os
+        operator: In
+        values:
+        - linux
+      - key: karpenter.k8s.aws/instance-category
+        operator: In
+        values:
+        - c
+        - d
+        - g
+        - i
+        - m
+        - p
+        - r
+        - x
+        - z
+      - key: karpenter.k8s.aws/instance-generation
+        operator: Gt
+        values:
+        - "2"
+      - key: kubernetes.io/arch
+        operator: In
+        values:
+        - amd64
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values:
+        - on-demand
+        {{- if $value.enableSpot }}
+        - spot
+        {{- end }}
+      {{- if len $value.selectiveInstanceTypes > 0 }}
+      - key: "node.kubernetes.io/instance-type"
+        operator: NotIn
+        values: {{ $value.selectiveInstanceTypes }}
+      {{- end }}
+      startupTaints:
+        - key: ebs.csi.aws.com/agent-not-ready
+          effect: NoExecute
+      {{- if $value.taintNodes }}
+      taints:
+      - key: nodePool
+        value: {{ $key | quote }}
+        effect: NoSchedule
+      {{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
