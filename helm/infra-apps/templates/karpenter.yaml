@@ -17,7 +17,8 @@ spec:
         # nodeSelector:
         #   eks.amazonaws.com/nodegroup: # TODO: change terraform to have name to initial node group
         clusterName: ie-test-eks
-        role: "ie-test-eks-nodes-group"
+        EC2NodeClass:
+          role: "ie-test-eks-nodes-group"
         settings:
           clusterName: ie-test-eks
           clusterEndpoint: https://D5AE13E5BCA772D49D52DB736262C56D.gr7.eu-west-1.eks.amazonaws.com
