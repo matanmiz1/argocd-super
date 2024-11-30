@@ -11,7 +11,7 @@ spec:
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
   destination:
-    server: {{ .Values.spec.destination.server }}
+    server: https://kubernetes.default.svc
 
   syncPolicy:
     automated:
