@@ -19,13 +19,14 @@ spec:
         clusterName: ie-test-eks
         EC2NodeClass:
           role: "ie-test-eks-nodes-group"
-        settings:
-          clusterName: ie-test-eks
-          clusterEndpoint: https://D5AE13E5BCA772D49D52DB736262C56D.gr7.eu-west-1.eks.amazonaws.com
-          interruptionQueue: Karpenter-ie-test-eks
-        serviceAccount:
-          annotations:
-            eks.amazonaws.com/role-arn: arn:aws:iam::883241448326:role/KarpenterControllerRole-ie-test-eks
+        karpenter:
+          settings:
+            clusterName: ie-test-eks
+            clusterEndpoint: https://D5AE13E5BCA772D49D52DB736262C56D.gr7.eu-west-1.eks.amazonaws.com
+            interruptionQueue: Karpenter-ie-test-eks
+          serviceAccount:
+            annotations:
+              eks.amazonaws.com/role-arn: arn:aws:iam::883241448326:role/KarpenterControllerRole-ie-test-eks
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system
