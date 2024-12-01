@@ -27,7 +27,7 @@ spec:
               eks.amazonaws.com/role-arn: arn:aws:iam::883241448326:role/KarpenterControllerRole-ie-test-eks
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: kube-system
+    namespace: karpenter
 
   syncPolicy:
     syncOptions:
