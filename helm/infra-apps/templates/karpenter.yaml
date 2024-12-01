@@ -20,7 +20,7 @@ spec:
         karpenter:
           settings:
             clusterName: ie-test-eks
-            clusterEndpoint: https://16183A0B2CD4BAD75C6DCA91529B056F.yl4.eu-west-1.eks.amazonaws.com
+            clusterEndpoint: https://C4EEA19857BA15239F25FEC8EB147E5A.gr7.eu-west-1.eks.amazonaws.com
             interruptionQueue: Karpenter-ie-test-eks
           serviceAccount:
             annotations:
