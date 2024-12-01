@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: alb-controller
-  namespace: argocd
+  namespace: argocd # TODO: putting kube-system causes errors
 spec:
   project: default
 
