@@ -55,7 +55,7 @@ nodePools:
       consolidateAfter: 1m0s
       consolidationPolicy: WhenEmpty
       expireAfter: Never
-    resources:
+    limits:
       cpu: 100
       memory: 200Gi
     taintNodes: true
@@ -67,7 +67,7 @@ nodePools:
     disruption:
       consolidationPolicy: WhenUnderutilized
       expireAfter: Never
-    resources:
+    limits:
       cpu: 200
       memory: 300Gi
     taintNodes: true
