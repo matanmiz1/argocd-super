@@ -50,7 +50,7 @@ spec:
         {{- if $value.enableSpot }}
         - spot
         {{- end }}
-      {{- if len $value.selectiveInstanceTypes > 0 }}
+      {{- if not $value.selectiveInstanceTypes }}
       - key: "node.kubernetes.io/instance-type"
         operator: NotIn
         values: {{ $value.selectiveInstanceTypes }}
