@@ -12,8 +12,8 @@ spec:
     path: helm/karpenter
     helm:
       valueFiles:
-        - /live/global/env.yaml
-        - /live/global/karpenter.yaml
+        - /live/{{ .Values.env.regionName }}/env.yaml
+        - /live/{{ .Values.env.regionName }}/karpenter.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system

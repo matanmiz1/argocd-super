@@ -11,12 +11,9 @@ spec:
     repoURL: https://aws.github.io/eks-charts
     targetRevision: 1.10.0
     helm:
-      valuesObject:
-        clusterName: "ie-test-eks"
-        serviceAccount:
-          name: "aws-load-balancer-controller"
-          annotations:
-            "eks.amazonaws.com/role-arn": "arn:aws:iam::883241448326:role/AmazonEKSLoadBalancerControllerRole-ie-test-eks"
+      valueFiles:
+        - /live/{{ .Values.env.regionName }}/env.yaml
+        - /live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system
