@@ -11,20 +11,9 @@ spec:
     targetRevision: HEAD
     path: helm/karpenter
     helm:
-      valuesObject:
-        # nodeSelector:
-        #   eks.amazonaws.com/nodegroup: # TODO: change terraform to have name to initial node group
-        clusterName: ie-test-eks
-        EC2NodeClass:
-          role: ie-test-eks-nodes-group
-        karpenter:
-          settings:
-            clusterName: ie-test-eks
-            clusterEndpoint: https://C4EEA19857BA15239F25FEC8EB147E5A.gr7.eu-west-1.eks.amazonaws.com
-            interruptionQueue: Karpenter-ie-test-eks
-          serviceAccount:
-            annotations:
-              eks.amazonaws.com/role-arn: arn:aws:iam::883241448326:role/KarpenterControllerRole-ie-test-eks
+      valueFiles:
+        - /live/global/env.yaml
+        - /live/global/karpenter.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system

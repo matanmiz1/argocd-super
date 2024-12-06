@@ -1,0 +1,5 @@
+clusters:
+  global:
+    endpoint: https://C4EEA19857BA15239F25FEC8EB147E5A.gr7.eu-west-1.eks.amazonaws.com
+  us-east-1:
+    endpoint: aaa

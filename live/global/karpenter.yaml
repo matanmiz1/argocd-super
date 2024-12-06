@@ -1,0 +1,19 @@
+# nodeSelector:
+#   eks.amazonaws.com/nodegroup: # TODO: change terraform to have name to initial node group
+
+clusterName: ie-test-eks
+
+EC2NodeClass:
+  role: ie-test-eks-nodes-group
+
+nodePools:
+  services:
+    enabled: false
+
+karpenter:
+  settings:
+    clusterName: ie-test-eks
+    interruptionQueue: Karpenter-ie-test-eks
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::883241448326:role/KarpenterControllerRole-ie-test-eks
