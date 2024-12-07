@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
-    {{- if eq $child "argocd" }}
+    {{- if eq $appName "argocd" }}
     path: init
     {{- else }}
     path: helm/{{ $appName }}
