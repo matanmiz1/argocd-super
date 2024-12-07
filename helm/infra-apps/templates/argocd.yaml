@@ -7,9 +7,9 @@ spec:
   project: default
 
   source:
-    path: init
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
+    path: init
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argocd
