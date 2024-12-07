@@ -1,9 +1,7 @@
-{{- range .Values.children }}
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ . }}
+  name: inflate
   namespace: argocd
 spec:
   project: default
@@ -11,16 +9,14 @@ spec:
   source:
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
-    path: helm/{{ . }}
-    helm:
-      valueFiles:
-        - /live/global/env.yaml
+    path: apps/inflate
   destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd # namespace per cluster
+    server: {{ .Values.spec.destination.server }}
+    namespace: default
 
   syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
-{{- end }}
