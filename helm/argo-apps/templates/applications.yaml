@@ -1,9 +1,9 @@
-{{- range $appName, $appValues := .Values.children }}
+{{- range .Values.children }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $appName }}
+  name: {{ . }}
   namespace: argocd
 spec:
   project: default
@@ -14,9 +14,7 @@ spec:
     path: helm/{{ . }}
     helm:
       valueFiles:
-        - /live/common.yaml
         - /live/global/env.yaml
-        - /live/global/{{ $appName }}.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd # namespace per cluster
