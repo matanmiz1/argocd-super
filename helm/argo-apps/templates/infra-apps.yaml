@@ -1,27 +1,27 @@
-{{- range $key, $values := .Values.clusters }}
-  {{- $endpoint := $values.endpoint }}
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: infra-apps--{{ $key }}
-  namespace: argocd
-spec:
-  project: default
+# {{- range $key, $values := .Values.clusters }}
+#   {{- $endpoint := $values.endpoint }}
+# ---
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: infra-apps--{{ $key }}
+#   namespace: argocd
+# spec:
+#   project: default
 
-  source:
-    repoURL: https://github.com/matanmiz1/argocd-super.git
-    targetRevision: HEAD
-    path: helm/infra-apps
-    helm:
-      valueFiles:
-        - /live/{{ $key }}/env.yaml
-  destination:
-    server: {{ $endpoint }}
-    namespace: argocd # namespace per cluster
+#   source:
+#     repoURL: https://github.com/matanmiz1/argocd-super.git
+#     targetRevision: HEAD
+#     path: helm/infra-apps
+#     helm:
+#       valueFiles:
+#         - /live/{{ $key }}/env.yaml
+#   destination:
+#     server: {{ $endpoint }}
+#     namespace: argocd # namespace per cluster
 
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-{{- end }}
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+# {{- end }}

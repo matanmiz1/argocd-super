@@ -1,24 +1,26 @@
+{{- range .Values.children }}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
+  name: {{ . }}
   namespace: argocd
 spec:
   project: default
 
   source:
-    path: helm/argo-apps
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
+    path: helm/infra-apps
     helm:
       valueFiles:
-        - /live/common.yaml
-        - /live/global/argo-apps.yaml
+        - /live/global/env.yaml
   destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd # TODO: what namespace
+    server: {{ $endpoint }}
+    namespace: argocd # namespace per cluster
 
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
+{{- end }}
