@@ -7,12 +7,12 @@ spec:
   project: default
 
   source:
-    chart: aws-load-balancer-controller
-    repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.10.0
+    repoURL: https://github.com/matanmiz1/argocd-super.git
+    targetRevision: HEAD
+    path: helm/aws-load-balancer-controller
     helm:
       valueFiles:
-        - /live/global/aws-load-balancer-controller.yaml
+        - /live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system
