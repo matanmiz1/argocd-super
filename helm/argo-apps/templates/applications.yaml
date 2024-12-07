@@ -16,7 +16,7 @@ spec:
       valueFiles:
         - /live/global/env.yaml
   destination:
-    server: {{ $endpoint }}
+    server: https://kubernetes.default.svc
     namespace: argocd # namespace per cluster
 
   syncPolicy:
