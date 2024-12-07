@@ -1,14 +1,13 @@
-{{- range $key, $values := .Values.clusters }}
-  {{- $region := $key }}
-  {{- $endpoint := $values.endpoint }}
+{{- range $clusterName, $clusterValues := .Values.clusters }}
+  {{- $region := $clusterName }}
+  {{- $endpoint := $clusterValues.endpoint }}
 
-  {{- range .Values.children }}
-  {{- $child := . }}
+  {{- range $appName, $appValues := .Values.children }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $child }}--{{ $region }}
+  name: {{ $appName }}--{{ $region }}
   namespace: argocd
 spec:
   project: default
@@ -19,11 +18,11 @@ spec:
     {{- if eq $child "argocd" }}
     path: init
     {{- else }}
-    path: helm/{{ $child }}
+    path: helm/{{ $appName }}
     helm:
       valueFiles:
         - /live/{{ .Values.env.regionName }}/env.yaml
-        - /live/{{ .Values.env.regionName }}/{{ $child }}.yaml
+        - /live/{{ .Values.env.regionName }}/{{ $appName }}.yaml
     {{- end }}
     
   destination:

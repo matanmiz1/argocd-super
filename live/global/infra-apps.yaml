@@ -1,4 +1,4 @@
 childern:
-  - argocd
-  - aws-load-balancer-controller
-  - karpenter
+  argocd:
+  aws-load-balancer-controller:
+  karpenter:
