@@ -12,7 +12,7 @@ spec:
     targetRevision: 1.10.0
     helm:
       valueFiles:
-        - ../live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
+        - /live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system
