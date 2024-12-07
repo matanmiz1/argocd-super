@@ -1,0 +1,38 @@
+{{- range $key, $values := .Values.clusters }}
+  {{- $region := $key }}
+  {{- $endpoint := $values.endpoint }}
+
+  {{- range .Values.children }}
+  {{- $child := . }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $child }}--{{ $region }}
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/matanmiz1/argocd-super.git
+    targetRevision: HEAD
+    {{- if eq $child "argocd" }}
+    path: init
+    {{- else }}
+    path: helm/{{ $child }}
+    helm:
+      valueFiles:
+        - /live/{{ .Values.env.regionName }}/env.yaml
+        - /live/{{ .Values.env.regionName }}/{{ $child }}.yaml
+    {{- end }}
+    
+  destination:
+    server: {{ $endpoint }}
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  {{- end }}
+{{- end }}

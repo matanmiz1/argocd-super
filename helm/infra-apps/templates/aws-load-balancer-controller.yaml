@@ -1,22 +1,22 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: alb-controller
-  namespace: argocd # TODO: putting kube-system causes errors
-spec:
-  project: default
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: alb-controller
+#   namespace: argocd # TODO: putting kube-system causes errors
+# spec:
+#   project: default
 
-  source:
-    repoURL: https://github.com/matanmiz1/argocd-super.git
-    targetRevision: HEAD
-    path: helm/aws-load-balancer-controller
-    helm:
-      valueFiles:
-        - /live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
-  destination:
-    server: {{ .Values.spec.destination.server }}
-    namespace: kube-system
+#   source:
+#     repoURL: https://github.com/matanmiz1/argocd-super.git
+#     targetRevision: HEAD
+#     path: helm/aws-load-balancer-controller
+#     helm:
+#       valueFiles:
+#         - /live/{{ .Values.env.regionName }}/aws-load-balancer-controller.yaml
+#   destination:
+#     server: {{ .Values.spec.destination.server }}
+#     namespace: kube-system
 
-  syncPolicy:
-    automated:
-      selfHeal: true
+#   syncPolicy:
+#     automated:
+#       selfHeal: true

@@ -1,0 +1,4 @@
+childern:
+  - argocd
+  - aws-load-balancer-controller
+  - karpenter

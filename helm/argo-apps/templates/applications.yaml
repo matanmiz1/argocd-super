@@ -14,7 +14,9 @@ spec:
     path: helm/{{ . }}
     helm:
       valueFiles:
+        - /live/common.yaml
         - /live/global/env.yaml
+        - /live/global/{{ . }}.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd # namespace per cluster
