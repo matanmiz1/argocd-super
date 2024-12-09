@@ -3,13 +3,16 @@ kind: Application
 metadata:
   name: aws-load-balancer-controller
 spec:
-  source:
-    repoURL: https://aws.github.io/eks-charts
-    targetRevision: 1.10.0
-    chart: aws-load-balancer-controller
-    helm:
-      valueFiles:
-        - /projects/infra-master/applications/aws-load-balancer-controller-helm-values.yaml
+  sources:
+    - repoURL: https://aws.github.io/eks-charts
+      targetRevision: 1.10.0
+      chart: aws-load-balancer-controller
+      helm:
+        valueFiles:
+          - /projects/infra-master/applications/aws-load-balancer-controller-helm-values.yaml
+    - repoURL: https://github.com/matanmiz1/argocd-super.git
+      targetRevision: HEAD
+      ref: values
   destination:
     namespace: kube-system
   syncPolicy:
