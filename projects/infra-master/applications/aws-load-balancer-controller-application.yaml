@@ -9,7 +9,7 @@ spec:
     chart: aws-load-balancer-controller
     helm:
       valueFiles:
-        - /projects/infra-master/aws-load-balancer-controller-helm-values.yaml
+        - /projects/infra-master/applications/aws-load-balancer-controller-helm-values.yaml
   destination:
     namespace: kube-system
   syncPolicy:

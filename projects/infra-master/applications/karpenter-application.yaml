@@ -9,7 +9,7 @@ spec:
       path: helm/karpenter
       helm:
         valueFiles:
-          - $values/projects/infra-master/karpenter-helm-values.yaml
+          - $values/projects/infra-master/applications/karpenter-helm-values.yaml
     - repoURL: https://github.com/matanmiz1/argocd-super.git
       targetRevision: HEAD
       ref: values
