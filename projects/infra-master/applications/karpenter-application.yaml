@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: karpenter
+spec:
+  source:
+    repoURL: https://github.com/matanmiz1/argocd-super.git
+    targetRevision: HEAD
+    path: helm/karpenter
+    helm:
+      valueFiles:
+        - /projects/infra-master/karpenter-helm-values.yaml
+  destination:
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

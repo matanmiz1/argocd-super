@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+spec:
+  source:
+    repoURL: https://github.com/matanmiz1/argocd-super.git
+    targetRevision: HEAD
+    path: init
+  destination:
+    namespace: argocd

@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd
+
+namePrefix: infra-master-
+
+resources:
+  - argocd.yaml
+  - aws-load-balancer-controller.yaml
+  - karpenter.yaml
+
+patches:
+  - target:
+      group: argoproj.io
+      version: v1alpha1
+      kind: Application
+    patch: |-
+      - op: add
+        path: /spec/project
+        value: default
+      - op: add
+        path: /spec/destination
+        value: { }
+      - op: add
+        path: /spec/destination/name
+        value: in-cluster
