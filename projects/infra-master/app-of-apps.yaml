@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: infra-master-app-of-apps
-  namespace: argocd
+  namespace: argocd # TODO: MUST because of permissions
 spec:
   project: default
   source:

@@ -6,9 +6,9 @@ namespace: argocd
 namePrefix: infra-master-
 
 resources:
-  - argocd.yaml
-  - aws-load-balancer-controller.yaml
-  - karpenter.yaml
+  - argocd-application.yaml
+  - aws-load-balancer-controller-application.yaml
+  - karpenter-application.yaml
 
 patches:
   - target:
