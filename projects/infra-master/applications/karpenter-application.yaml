@@ -3,13 +3,16 @@ kind: Application
 metadata:
   name: karpenter
 spec:
-  source:
-    repoURL: https://github.com/matanmiz1/argocd-super.git
-    targetRevision: HEAD
-    path: helm/karpenter
-    helm:
-      valueFiles:
-        - /projects/infra-master/karpenter-helm-values.yaml
+  sources:
+    - repoURL: https://github.com/matanmiz1/argocd-super.git
+      targetRevision: HEAD
+      path: helm/karpenter
+      helm:
+        valueFiles:
+          - $values/projects/infra-master/karpenter-helm-values.yaml
+    - repoURL: https://github.com/matanmiz1/argocd-super.git
+      targetRevision: HEAD
+      ref: values
   destination:
     namespace: kube-system
   syncPolicy:
