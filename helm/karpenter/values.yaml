@@ -1,9 +1,7 @@
-# https://github.com/aws/karpenter-provider-aws/blob/release-v0.32.10/charts/karpenter/values.yaml
-
-# Cluster Name
-clusterName:
+# https://github.com/aws/karpenter-provider-aws/blob/release-v0.37.6/charts/karpenter/values.yaml
 
 karpenter:
+  fullnameOverride: karpenter
   # nodeSelector:
   #   # -- Karpenter node group
   #   eks.amazonaws.com/nodegroup:

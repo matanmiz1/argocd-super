@@ -18,12 +18,12 @@ spec:
   role: {{ .Values.EC2NodeClass.role | required ".Values.EC2NodeClass.role is required." }}
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: {{ .Values.clusterName | quote }}
+        karpenter.sh/discovery: {{ .Values.karpenter.settings.clusterName | quote }}
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: {{ .Values.clusterName | quote }}
+        karpenter.sh/discovery: {{ .Values.karpenter.settings.clusterName | quote }}
   tags:
-    Name: {{ .Values.clusterName }}-karpenter
+    Name: {{ .Values.karpenter.settings.clusterName }}-karpenter
     Type: karpenter_compute
   # userData: |-
   #   #!/bin/bash
