@@ -3,10 +3,17 @@ kind: Ingress
 metadata:
   name: nginx
   annotations:
+    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:883241448326:certificate/730011b0-63e7-40e8-94b5-7158f6c347ad
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    # alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
+    # alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    # alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    # alb.ingress.kubernetes.io/healthcheck-protocol: HTTPS
 spec:
+  ingressClassName: alb
   rules:
   - host: nginx.example.com
     http:
