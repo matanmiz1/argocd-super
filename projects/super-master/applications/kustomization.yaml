@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: argocd # TODO here ?
+
+namePrefix: super-master-
+
+resources:
+  - inflate-application.yaml
+
+patches:
+  - target:
+      group: argoproj.io
+      version: v1alpha1
+      kind: Application
+    patch: |-
+      - op: add
+        path: /spec/project
+        value: super-master
+      - op: add
+        path: /spec/destination
+        value: { }
+      - op: add
+        path: /spec/destination/namespace
+        value: default
+      - op: add
+        path: /spec/destination/name
+        value: in-cluster
