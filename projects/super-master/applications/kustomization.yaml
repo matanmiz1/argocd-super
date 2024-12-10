@@ -16,7 +16,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/project
-        value: super-master
+        value: default
       - op: add
         path: /spec/destination
         value: { }
