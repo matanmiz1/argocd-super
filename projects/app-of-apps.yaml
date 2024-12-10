@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: infra-master-app-of-apps
-  namespace: argocd # TODO: MUST because of permissions
+  name: app-of-apps
+  namespace: argocd
 spec:
-  # project: default
+  project: default
   source:
     repoURL: https://github.com/matanmiz1/argocd-super.git
-    path: projects/infra-master/applications
+    path: projects/infra-master
     targetRevision: HEAD
   destination:
-    # name: in-cluster
+    name: in-cluster
     namespace: argocd
   syncPolicy:
     automated:
