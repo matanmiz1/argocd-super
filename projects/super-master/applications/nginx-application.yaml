@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+spec:
+  source:
+    repoURL: https://github.com/matanmiz1/argocd-super.git
+    targetRevision: HEAD
+    path: apps/nginx
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
