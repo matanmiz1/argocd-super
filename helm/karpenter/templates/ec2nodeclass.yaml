@@ -9,7 +9,7 @@ spec:
       ebs:
         encrypted: true
         volumeSize: {{ .Values.EC2NodeClass.rootSize | quote }}
-        volumeType: gp2 # TODO: gp3
+        volumeType: gp3
   # metadataOptions:
   #   httpEndpoint: enabled
   #   httpProtocolIPv6: disabled
