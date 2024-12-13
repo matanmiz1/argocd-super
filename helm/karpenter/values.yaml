@@ -31,7 +31,8 @@ karpenter:
       limits:
         cpu: 1
         memory: 1Gi
-
+  webhook:
+    enabled: false
 
 EC2NodeClass:
   name: main
