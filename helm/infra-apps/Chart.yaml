@@ -1,4 +1,0 @@
-apiVersion: v1
-description: Infra apps
-name: infra-apps
-version: "1.0.0"

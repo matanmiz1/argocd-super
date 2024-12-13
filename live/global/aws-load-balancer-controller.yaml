@@ -1,7 +1,0 @@
-aws-load-balancer-controller:
-  clusterName: "ie-test-eks"
-  
-  serviceAccount:
-    name: "aws-load-balancer-controller"
-    annotations:
-      "eks.amazonaws.com/role-arn": "arn:aws:iam::883241448326:role/AmazonEKSLoadBalancerControllerRole-ie-test-eks"
