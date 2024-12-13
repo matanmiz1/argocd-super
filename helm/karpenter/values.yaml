@@ -44,7 +44,7 @@ nodePools:
   main:
     enabled: true
     disruption:
-      consolidateAfter: 0
+      consolidateAfter: 0s
       consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
@@ -70,7 +70,7 @@ nodePools:
   services:
     enabled: true
     disruption:
-      consolidateAfter: 0
+      consolidateAfter: 0s
       consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
