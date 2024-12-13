@@ -16,7 +16,7 @@ spec:
         nodePool: {{ $key | quote }}
     spec:
       nodeClassRef:
-        group: karpenter.k8s.aws/v1
+        group: karpenter.k8s.aws
         kind: EC2NodeClass
         name: main
       requirements:
