@@ -8,6 +8,7 @@ namePrefix: infra-master-
 resources:
   - argocd-application.yaml
   - aws-load-balancer-controller-application.yaml
+  - gp3-application.yaml
   - karpenter-application.yaml
 
 patches:
