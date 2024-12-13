@@ -12,6 +12,10 @@ karpenter:
   #   operator: Equal
   #   value: 'true'
   #   effect: NoSchedule
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: ScheduleAnyway
   settings:
     InterruptionQueue:
     clusterName:
@@ -38,7 +42,7 @@ nodePools:
   main:
     enabled: true
     disruption:
-      consolidationPolicy: WhenUnderutilized
+      consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
       cpu: 50
@@ -63,7 +67,7 @@ nodePools:
   services:
     enabled: true
     disruption:
-      consolidationPolicy: WhenUnderutilized
+      consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
       cpu: 200
