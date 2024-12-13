@@ -35,10 +35,6 @@ karpenter:
   webhook:
     enabled: false
 
-karpenter-crd:
-  webhook:
-    enbaled: false
-
 EC2NodeClass:
   name: main
   rootSize: 30Gi

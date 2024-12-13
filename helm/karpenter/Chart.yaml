@@ -8,6 +8,3 @@ dependencies:
 - name: karpenter
   version: "1.0.0"
   repository: "oci://public.ecr.aws/karpenter"
-- name: karpenter-crd
-  version: "1.0.0"
-  repository: "oci://public.ecr.aws/karpenter"
