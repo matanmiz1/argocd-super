@@ -3,7 +3,8 @@ kind: EC2NodeClass
 metadata:
   name: {{ .Values.EC2NodeClass.name | quote }}
 spec:
-  amiFamily: AL2
+  amiSelectorTerms:
+    - alias: al2023@latest # Amazon Linux 2023
   blockDeviceMappings:
     - deviceName: /dev/xvda
       ebs:
