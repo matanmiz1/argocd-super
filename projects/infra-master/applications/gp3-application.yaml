@@ -13,8 +13,8 @@ spec:
     - repoURL: https://github.com/matanmiz1/argocd-super.git
       targetRevision: HEAD
       ref: values
-  # destination:
-  #   namespace: kube-system
+  destination:
+    namespace: kube-system
   syncPolicy:
     automated:
       selfHeal: true
