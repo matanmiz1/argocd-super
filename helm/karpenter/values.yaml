@@ -42,7 +42,7 @@ nodePools:
   main:
     enabled: true
     disruption:
-      consolidationPolicy: WhenUnderutilized
+      consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
       cpu: 50
@@ -67,7 +67,7 @@ nodePools:
   services:
     enabled: true
     disruption:
-      consolidationPolicy: WhenUnderutilized
+      consolidationPolicy: WhenEmptyOrUnderutilized
       expireAfter: Never
     limits:
       cpu: 200
