@@ -7,6 +7,9 @@ metadata:
   name: {{ $key | quote }}
 spec:
   disruption: {{ $value.disruption | toYaml | nindent 4 }}
+  {{- if $value.expireAfter }}
+  expireAfter: {{ $value.expireAfter }}
+  {{- end }}
   limits:
     cpu: {{ $value.limits.cpu }}
     memory: {{ $value.limits.memory | quote }}

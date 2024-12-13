@@ -46,7 +46,7 @@ nodePools:
     disruption:
       consolidateAfter: 0s
       consolidationPolicy: WhenEmptyOrUnderutilized
-      expireAfter: Never
+    expireAfter: Never
     limits:
       cpu: 50
       memory: 100Gi
@@ -59,7 +59,7 @@ nodePools:
     disruption:
       consolidateAfter: 1m0s
       consolidationPolicy: WhenEmpty
-      expireAfter: Never
+    expireAfter: Never
     limits:
       cpu: 100
       memory: 200Gi
@@ -72,7 +72,7 @@ nodePools:
     disruption:
       consolidateAfter: 0s
       consolidationPolicy: WhenEmptyOrUnderutilized
-      expireAfter: Never
+    expireAfter: Never
     limits:
       cpu: 200
       memory: 300Gi
