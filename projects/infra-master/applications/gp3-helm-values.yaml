@@ -1,0 +1,12 @@
+name: gp3
+type: gp3
+
+provisioner: ebs.csi.aws.com
+
+encryped: true
+isDefault: false
+allowVolumeExpansion: true
+
+fstype: ext4
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

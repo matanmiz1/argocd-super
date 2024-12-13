@@ -1,0 +1,12 @@
+name:
+type:
+
+provisioner:
+
+encryped: true
+isDefault:
+allowVolumeExpansion:
+
+fstype: 
+reclaimPolicy: 
+volumeBindingMode: 

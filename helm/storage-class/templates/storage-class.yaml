@@ -1,0 +1,20 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    {{- if .Values.isDefault }}
+    storageclass.kubernetes.io/is-default-class: "true"
+    {{- end }}
+  name: {{ .Values.name }}
+parameters:
+  csi.storage.k8s.io/fstype: {{ .Values.fstype }}
+  {{- if .Values.encryped }}
+  encrypted: "true"
+  {{- end }}
+  type: {{ .Values.type }}
+{{- if .Values.allowVolumeExpansion }}
+allowVolumeExpansion: true
+{{- end }}
+provisioner: {{ .Values.provisioner }}
+reclaimPolicy: {{ .Values.reclaimPolicy }}
+volumeBindingMode: {{ .Values.volumeBindingMode }}
