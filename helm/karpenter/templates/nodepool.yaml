@@ -1,7 +1,7 @@
 {{- range $key, $value := .Values.nodePools }}
 {{- if $value.enabled }}
 ---
-apiVersion: karpenter.sh/v1beta1
+apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:
   name: {{ $key | quote }}
