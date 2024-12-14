@@ -8,7 +8,14 @@ spec:
     repoURL: https://github.com/matanmiz1/argocd-super.git
     targetRevision: HEAD
     path: apps/inflate
+  ignoreDifferences:
+  - group: "apps"
+    kind: "Deployment"
+    jsonPointers:
+    - /spec/replicas
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
